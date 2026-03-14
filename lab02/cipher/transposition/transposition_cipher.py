@@ -10,14 +10,29 @@ class TranspositionCipher:
                 encrypted_text += text[pointer]
                 pointer += key
         return encrypted_text
-
+    
     def decrypt(self, text, key):
-        decrypted_text = [''] * key
-        row, col = 0, 0
-        for symbol in text:
-            decrypted_text[col] += symbol
-            col += 1
-            if col == key or (col == key - 1 and row >= len(text) % key):
-                col = 0
-                row += 1
-        return ''.join(decrypted_text)
+        length = len(text)
+        num_rows = (length + key - 1) // key
+        full_cols = length % key
+
+        if full_cols == 0: full_cols = key
+        res = [''] * num_rows
+        idx = 0 
+
+        for c in range(key):
+            col_len = num_rows if c < full_cols else num_rows - 1
+            for r in range(col_len):
+                res[r] += text[idx]
+                idx += 1       
+        return "".join(res)
+    # def decrypt(self, text, key):
+    #     decrypted_text = [''] * key
+    #     row, col = 0, 0
+    #     for symbol in text:
+    #         decrypted_text[col] += symbol
+    #         col += 1
+    #         if col == key or (col == key - 1 and row >= len(text) % key):
+    #             col = 0
+    #             row += 1
+    #     return ''.join(decrypted_text)

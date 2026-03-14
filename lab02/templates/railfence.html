@@ -22,6 +22,11 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Encrypt</button>
                     </form>
+                    {% if res_en %}
+                        <div class="alert alert-primary mt-3">
+                            <strong>Kết quả mã hóa:</strong> {{ res_en }}
+                        </div>
+                        {% endif %}
                 </td>
             </tr>
             <tr><td style="font-weight: bold; color: green">DECRYPTION</td></tr>
@@ -38,6 +43,11 @@
                         </div>
                         <button type="submit" class="btn btn-success">Decrypt</button>
                     </form>
+                    {% if res_de %}
+                        <div class="alert alert-success mt-3">
+                            <strong>Kết quả giải mã:</strong> {{ res_de }}
+                        </div>
+                        {% endif %}
                 </td>
             </tr>
         </table>
